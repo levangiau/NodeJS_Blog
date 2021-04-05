@@ -2,6 +2,7 @@ const express = require("express");
 const morgan = require("morgan");
 const path = require("path");
 const handlebars = require("express-handlebars");
+const db = require("./config/db");
 const app = express();
 const port = 5000;
 
@@ -23,9 +24,8 @@ app.engine(
   })
 );
 app.set("view engine", "hbs");
-app.set("views", path.join(__dirname, "resource/views")); // =>code này có ý nghĩa: tạo path resource/views thành views
-console.log(__dirname);
-console.log(path.join(__dirname, "resource/views"));
+app.set("views", path.join(__dirname, 'resource','views')); // =>code này có ý nghĩa: tạo path resource/views thành views
+
 //
 
 /**
@@ -77,7 +77,10 @@ const route = require("./routes");
 
 route(app);
 
+//connect db
+db.connect();
+
 //localhost === "127.0.0.1"
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`App listening at http://localhost:${port}`);
 });
