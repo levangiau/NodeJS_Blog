@@ -1,4 +1,5 @@
 const express = require("express");
+const methodOverride = require('method-override');
 const morgan = require("morgan");
 const path = require("path");
 const handlebars = require("express-handlebars");
@@ -8,6 +9,9 @@ const port = 5000;
 
 //cấu hình file tỉnh && SCSS
 app.use(express.static(path.join(__dirname, "public")));
+
+//cấu hình method req lên server
+app.use(methodOverride('_method'))
 
 //http loger
 // app.use(morgan("combined"));
@@ -21,6 +25,9 @@ app.engine(
   "hbs",
   handlebars({
     extname: ".hbs",
+    helpers: {
+      sum:(a,b)=>a+b,
+    }
   })
 );
 app.set("view engine", "hbs");
