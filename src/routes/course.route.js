@@ -3,6 +3,9 @@ const router = express.Router();
 
 const coursecontroller = require("./../app/controllers/Course.controller");
 
+router.delete("/:id/force", coursecontroller.destroy);
+router.patch("/:id/restore", coursecontroller.patch);
+router.delete("/:id", coursecontroller.delete);
 router.put("/:id", coursecontroller.update);
 router.get("/:id/edit", coursecontroller.edit);
 router.get("/create", coursecontroller.create);

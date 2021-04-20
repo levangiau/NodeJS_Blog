@@ -27,7 +27,7 @@ class SiteController {
     //dạng sử dụng hàm ở ngoài truyền vào cho đỡ lập code
    
     Course.find({}).then(course=>{
-     
+    
          res.render("home",{ 
            course:multipleMongooseToObject(course)
           })
