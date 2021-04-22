@@ -9,13 +9,13 @@
               Chọn tất cả
             </label>
           </div>
-          <select class="custom-select mr-sm-2 select-options" name="action" required>
+          <select class="custom-select mr-sm-2 select-options" name="action" required="required">
             <option value="">-- Chọn hành động --</option>
             <option value="delete">Xóa</option>
             <option value="2">Two</option>
             <option value="3">Three</option>
           </select>
-          <button class="btn btn-primary btn-submit disabled">Thực hiện</button>
+          <button class="btn btn-primary btn-submit" disabled="disabled">Thực hiện</button>
       </div>
     </div>
 
@@ -93,7 +93,7 @@
 
         var courseId;
         var deleteForm = document.forms['delete-form'];
-        var containerForm = document.forms['container-form'];
+        var containerForm = $('form[name="container-form"]');
         var btnSubmit = $('.btn-submit');
         var btnDeleteCourse = document.getElementById('delete-course');
         var checboxAll = $('#checkbox-all');
@@ -131,20 +131,15 @@
            checboxAll.prop('checked',checkAll);
            renderCheckAllSubmitButton();
          });
-         // check all submit button clicked
-         btnSubmit.on('submit',function(e){
-           var isSubmitTable = !$(this).hasClass('disabled');
-           if(!isSubmitTable){
-                e.preventDefault();
-           }
-         });
+
+         
          //Re-render submit button
          function renderCheckAllSubmitButton(){
            var checkedCount = $('input[name="coursesId[]"]:checked').length;
            if(checkedCount > 0){
-             btnSubmit.removeClass('disabled');
+             btnSubmit.attr('disabled',false);
            }else{
-             btnSubmit.addClass('disabled')
+             btnSubmit.attr('disabled',true)
            }
          };
        
